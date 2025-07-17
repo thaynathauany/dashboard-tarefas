@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 
-interface BtnFormProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
+type BtnFormProps = PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>>;
 
 export const BtnForm = ({ children, ...props }: BtnFormProps) => {
   return (

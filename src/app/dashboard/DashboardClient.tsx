@@ -44,7 +44,7 @@ export default function DashboardClient({ session }: DashboardClientProps) {
     const q = query(tarefasRef, orderBy("created", "desc"));
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      let list = [] as TaskProps[];
+      const list = [] as TaskProps[];
       snapshot.forEach((doc) => {
         const data = doc.data();
         if (data.user === session?.user?.email) {

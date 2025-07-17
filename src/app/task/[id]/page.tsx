@@ -3,6 +3,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import TaskClient from "../TaskClient";
 import { db } from "@/services/firebaseConnection";
 import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
+import { Session } from "next-auth";
 
 interface Props {
   params: {
@@ -11,7 +12,7 @@ interface Props {
 }
 
 export default async function TaskPage({ params }: Props) {
-  const session = await getServerSession(authOptions);
+  const session: Session | null = await getServerSession(authOptions);
 
   const commentsRef = collection(db, "comments");
   const q = query(
@@ -34,7 +35,7 @@ export default async function TaskPage({ params }: Props) {
   return (
     <TaskClient
       taskId={params.id}
-      session={session as any}
+      session={session as Session}
       initialComments={comments}
     />
   );
